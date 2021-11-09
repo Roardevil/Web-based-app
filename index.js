@@ -4,7 +4,7 @@ let app = new Vue({
     data: {
         lesson: lesson,
         showproduct: true,
-        space: space,
+
 
     },
 
