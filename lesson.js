@@ -1,3 +1,4 @@
+
 let lesson = [
     {
         id: 0,
@@ -14,7 +15,7 @@ let lesson = [
     {
         id: 1,
         subject: "English",
-        location: "london",
+        location: "bath",
         price: 80,
         space: 7,
         image: "../images/english.jpg",
@@ -26,7 +27,7 @@ let lesson = [
     {
         id: 2,
         subject: "Music",
-        location: "london",
+        location: "upton park",
         price: 100,
         space: 8,
         image: "../images/music.png",
@@ -37,7 +38,7 @@ let lesson = [
     {
         id: 3,
         subject: "Dance",
-        location: "london",
+        location: "east ham",
         price: 150,
         space: 10,
         image: "../images/dance.jpg",
@@ -48,7 +49,7 @@ let lesson = [
     {
         id: 4,
         subject: "Swimming",
-        location: "london",
+        location: "west ham",
         price: 160,
         space: 12,
         image: "../images/swim.png",
@@ -60,7 +61,7 @@ let lesson = [
     {
         id: 5,
         subject: "Science",
-        location: "london",
+        location: "liverpool",
         price: 300,
         space: 12,
         image: "../images/science.jpg",
@@ -71,7 +72,7 @@ let lesson = [
     {
         id: 6,
         subject: "Drawing",
-        location: "london",
+        location: "kent",
         price: 20,
         space: 12,
         image: "../images/draw.jpg",
@@ -82,7 +83,7 @@ let lesson = [
     {
         id: 7,
         subject: "Acting",
-        location: "london",
+        location: "aldgate",
         price: 100,
         space: 8,
         image: "../images/act.jpg",
@@ -93,7 +94,7 @@ let lesson = [
     {
         id: 8,
         subject: "Hindi",
-        location: "london",
+        location: "canning town",
         price: 400,
         space: 6,
         image: "../images/hindi.jpg",
@@ -103,7 +104,7 @@ let lesson = [
     {
         id: 9,
         subject: "Singing",
-        location: "london",
+        location: "fulam",
         price: 260,
         space: 7,
         image: "../images/sing.jpg",
