@@ -9,6 +9,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js"></script>
 
+
+
 </head>
 
 <body>
@@ -20,15 +22,17 @@
 
 
 
-            <input placeholder="Search Lesson" icon="search" v-model="filter">
 
-
-
-
-            <select v-model="sort" placeholder="Sort by">
-                <option v-for="item in options" :label="item.label" :value="item.value">
-                </option>
+            <select name="sortBy" id="select" v-model="sortBy">
+                <option value="Location">Location</option>
+                <option value="price">price</option>
             </select>
+            <button type="up" v-on:click="ascending = !ascending">Sort(a-z)/(z-a)
+                <i v-if="ascending" class="bi bi-sort-up"></i>
+                <i v-else class="bi bi-sort-down"></i>
+            </button>
+            <input type="text" v-model="searchValue" placeholder="Search Lesson" id="search-input"></input>
+            <i class="fa fa-search"></i>
 
 
 
