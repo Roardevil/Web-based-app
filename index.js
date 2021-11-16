@@ -3,8 +3,9 @@ var app = new Vue({
     data: {
         lesson: lesson,
         showproduct: true,
-        filter: '',
-        sort: '',
+        ascending: true,
+        sortBy: 'alphabetically',
+        searchValue: '',
         terms: false,
         Country: {
             UK: 'united kingdom',
@@ -91,7 +92,6 @@ var app = new Vue({
             for (let i = 0; i < this.cart.length; i++) {
                 if (this.cart[i] == index) {
                     this.cart.splice(i, 1);
-                    console.log(i + " " + index);
                     break;
 
                 }
@@ -114,39 +114,45 @@ var app = new Vue({
 
         getlesson() {
 
-            var lesson = this.lesson.filter((lesson) => {
-                return lesson.subject.toLowerCase().includes(this.filter.toLowerCase());
-            });
+            let searchlesson = this.lesson
 
-            if (this.sort == 'rating') {
-                return lesson.sort(function (a, b) {
-                    return b.rating - a.rating
-                });
-
+            // Process search input
+            if (this.searchValue != '' && this.searchValue) {
+                searchlesson = searchlesson.filter((lesson) => {
+                    return lesson.subject
+                        .toUpperCase()
+                        .includes(this.searchValue.toUpperCase())
+                })
             }
-            else if (this.sort == 'leastrated') {
-                return lesson.sort(function (a, b) {
-                    return a.rating - b.rating
-                });
 
-            }
-            else if (this.sort == 'price(high to low)') {
-                return lesson.sort(function (a, b) {
-                    return b.price - a.price
-                });
 
-            }
-            else if (this.sort == 'price(low to high)') {
-                return lesson.sort(function (a, b) {
+
+            // Sort by alphabetical order
+            searchlesson = searchlesson.sort((a, b) => {
+                if (this.sortBy == 'alphabetically') {
+                    let fa = a.location.toLowerCase(), fb = b.location.toLowerCase()
+
+                    if (fa < fb) {
+                        return -1
+                    }
+                    if (fa > fb) {
+                        return 1
+                    }
+                    return 0
+
+                    // Sort by cooking time
+                } else if (this.sortBy == 'price') {
                     return a.price - b.price
-                });
+                }
+            })
 
+            // Show sorted array in descending or ascending order
+            if (!this.ascending) {
+                searchlesson.reverse()
             }
 
-            else {
-                return lesson;
-            }
-
+            return searchlesson
         }
     }
+
 })
