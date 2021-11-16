@@ -1,43 +1,212 @@
-<!Doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
-     <meta charset="UTF-8">
-     <title> Subject Details</title>
-     <link rel="stylesheet" href="style.css">
-     <script src="../group-work/vue.js"></script><!-- Link to JS File-->
+    <title>Vue.js Pet Depot</title>
+    <script src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js"></script>
 
 </head>
-<!-- content here-->
 
 <body>
-     <div id="body">
 
-          <div id="app">
-               <div v-if='showproduct'>
-                    <div v-for="lesson in lesson">
-                         <h1 v-text="lesson.subject"></h1>
-                         <img v-bind:src="lesson.image">
-                         <p>Subject: {{lesson.subject}}</p><!-- Get data from object using v-text-->
-                         <p>Location: {{lesson.location}}</p><!-- Get data from object-->
-                         <p>Id: {{lesson.id}}</p><!-- Get data from object-->
-                         <p>Price: {{lesson.price}}</p><!-- Get data from object-->
-                         <p>space: {{lesson.stock}}</p><!-- Get data from object-->
-                         <button type="button" value="add" v-on:click="additem" v-bind:disabled="isDisabled">Add
-                              To Cart</button>
+    <div id="vueapp">
+        <h1>Lessons</h1>
+
+        <div class="container">
 
 
-                    </div>
-               </div>
-          </div>
-     </div>
 
-     <script src="../group-work/lessons.js"></script><!-- Link to JS File-->
-     <script src="../group-work/index.js"></script><!-- Link to JS File-->
-     <script src="../group-work/vue.js"></script><!-- Link to JS File-->
+            <input placeholder="Search Lesson" icon="search" v-model="filter">
 
 
 
 
+            <select v-model="sort" placeholder="Sort by">
+                <option v-for="item in options" :label="item.label" :value="item.value">
+                </option>
+            </select>
+
+
+
+
+
+            <button type="button" v-on:click="showcheckout">
+                <span class="glyphicon glyphicon-shopping-cart">{{ cartItemCount }}</span> Checkout
+            </button>
+
+        </div>
+
+
+
+        <div v-if="showproduct">
+            <div v-for="lesson in getlesson">
+                <img v-bind:src="lesson.image" height="200" width="300">
+                <p>subject: {{ lesson.subject }}</p>
+                <!--Get data from object using v-text-->
+                <p>Location: {{ lesson.location }}</p>
+                <!--Get data from object-->
+                <p>Price: {{ lesson.price }}</p>
+                <!--Get data from object-->
+                <p>space: {{ lesson.space }}</p>
+                <!--Get data from object-->
+
+
+
+                <button class="btn btn-success" v-on:click="additem(lesson.id)" v-if="canaddtocart(lesson)">Add
+                    to cart</button>
+                <button disabled="true" v-else>Add to cart</button>
+                <span v-if="lesson.space === cartCount(lesson.id)">All Out!
+                </span>
+                <span v-else-if="lesson.space - cartCount(lesson.id) < 5">
+                    Only {{lesson.space - cartCount(lesson.id)}} left
+                </span>
+                <span v-else>Buy Now!
+                </span>
+                <div>
+                    <span v-for='n in lesson.rating'>★
+                    </span>
+                    <span v-for='n in 5-lesson.rating'>☆</span>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+        <div v-else>
+            <h1>School club checkout</h1>
+            <h4>
+                <strong>Enter Your Information</strong>
+            </h4>
+            <div v-if="cartCount(index)>0" v-for="(lesson,index) in getlesson" :key="index">
+
+                <img v-bind:src="lesson.image" height="200" width="300">
+                <p>subject: {{ lesson.subject }}</p>
+                <!--Get data from object using v-text-->
+                <p>Location: {{ lesson.location }}</p>
+                <!--Get data from object-->
+                <p>Price: {{ lesson.price }}</p>
+                <!--Get data from object-->
+                <p>space: {{ lesson.space }}</p>
+                <!--Get data from object-->
+
+
+
+                <button v-on:click="removeButton(lesson.id)">Remove </button>
+
+                <span v-if="lesson.space === cartCount(lesson.id)">All Out!
+                </span>
+                <span v-else-if="lesson.space - cartCount(lesson.id) < 5">
+                    Only {{lesson.space - cartCount(lesson.id)}} left
+                </span>
+                <span v-else>Buy Now!
+                </span>
+                <div>
+                    <span v-for='n in lesson.rating'>★
+                    </span>
+                    <span v-for='n in 5-lesson.rating'>☆</span>
+                </div>
+
+            </div>
+
+
+
+
+
+            <form id="app" @submit="checkForm" action="/something" method="post">
+                <p v-if="errors.length">
+                    <b>Please correct the following error(s):</b>
+                <ul>
+                    <li v-for="error in errors">{{ error }}</li>
+                </ul>
+                </p>
+
+                <strong>First Name:</strong>
+                <input v-model.trim="order.firstName" class="form-control" id="firstname" />
+
+
+                <strong>Last Name:</strong>
+                <input v-model.trim="order.lastName" class="form-control" id="Lastname" />
+
+
+
+                <strong>Address:</strong>
+
+
+                <input v-model.trim="order.address" class="form-control" id="address" />
+
+
+                <strong>City:</strong>
+
+                <input v-model.trim="order.city" class="form-control" id="city" />
+
+
+                <strong>State:</strong>
+                <select v-model="order.Country" class="form-control">
+                    <option disabled value="">State</option>
+                    <option v-for="(Country, key) in Country" v-bind:value="Country">
+                        {{ key }}
+                    </option>
+                </select>
+
+                <strong>Zip / Postal Code:</strong>
+                <input v-model.number="order.zip" class="form-control" type="number" id="postcode" />
+
+
+                <input type="checkbox" id="gift" value="true" v-bind:true-value="order.sendGift"
+                    v-bind:false-value="order.dontSendGift" v-model="order.gift">
+                <label for="gift">Ship As Gift?</label>
+
+                <!-- end of form-group -->
+
+                <input type="radio" id="home" v-bind:value="order.home" v-model="order.method">
+                <label for="home">Home</label><br>
+                <input type="radio" id="business" v-bind:value="order.business" v-model="order.method">
+                <label for="business">Business</label><br>
+
+                <!-- end of form-group-->
+
+                <input id='terms' type='checkbox' v-model='terms' /> I accept terms & conditions!!!
+                </label>
+
+                <button type="submit" value="submit" :disabled='isDisabled'>Place
+                    Order</button>
+            </form>
+
+            <!-- end of form-group-->
+
+
+
+
+            <pre>
+                                        First Name: {{ order.firstName }}
+                                        Last Name: {{ order.lastName }}
+                                        Address: {{ order.address }}
+                                        City: {{ order.city }}
+                                        Zip: {{ order.zip }}
+                                        State: {{ order.state }}
+                                        Method: {{ order.method }}
+                                        Gift: {{ order.gift }}
+                                    </pre>
+
+        </div>
+    </div>
 </body>
+
+<script src="/lesson.js"></script>
+
+<script src="/index.js"></script>
+
+
+
+
+
+
+
+</html>
