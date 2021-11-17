@@ -1,7 +1,7 @@
 
 let lesson = [
     {
-        id: 0,
+        id: 001,
         subject: "Maths",
         location: "london",
         price: 180,
@@ -13,7 +13,7 @@ let lesson = [
     },
 
     {
-        id: 1,
+        id: 002,
         subject: "English",
         location: "bath",
         price: 80,
@@ -25,7 +25,7 @@ let lesson = [
 
     },
     {
-        id: 2,
+        id: 003,
         subject: "Music",
         location: "upton park",
         price: 100,
@@ -36,7 +36,7 @@ let lesson = [
 
     },
     {
-        id: 3,
+        id: 004,
         subject: "Dance",
         location: "east ham",
         price: 150,
@@ -47,7 +47,7 @@ let lesson = [
 
     },
     {
-        id: 4,
+        id: 005,
         subject: "Swimming",
         location: "west ham",
         price: 160,
@@ -59,7 +59,7 @@ let lesson = [
 
     },
     {
-        id: 5,
+        id: 006,
         subject: "Science",
         location: "liverpool",
         price: 300,
@@ -70,7 +70,7 @@ let lesson = [
 
     },
     {
-        id: 6,
+        id: 007,
         subject: "Drawing",
         location: "kent",
         price: 20,
@@ -80,8 +80,9 @@ let lesson = [
 
 
     },
+
     {
-        id: 7,
+        id: 010,
         subject: "Acting",
         location: "aldgate",
         price: 100,
@@ -92,7 +93,7 @@ let lesson = [
 
     },
     {
-        id: 8,
+        id: 011,
         subject: "Hindi",
         location: "canning town",
         price: 400,
@@ -102,7 +103,7 @@ let lesson = [
 
     },
     {
-        id: 9,
+        id: 012,
         subject: "Singing",
         location: "fulam",
         price: 260,
