@@ -6,43 +6,17 @@ var app = new Vue({
         ascending: true,
         sortBy: 'alphabetically',
         searchValue: '',
-        terms: false,
-        Country: {
-            UK: 'united kingdom',
-            IN: 'India',
-            US: 'United states of america',
-            CA: 'Canada',
-            AUS: 'Australia'
-        },
-        order: {
-            firstName: '',
-            lastName: '',
-            address: '',
-            city: '',
-            postcode: '',
-            Country: '',
-            method: 'Home Address',
-            business: 'Business Address',
-            home: 'Home Address',
-            gift: 'Send As A Gift',
-            sendGift: 'Send As A Gift',
-            dontSendGift: 'Do Not Send As A Gift'
-        },
+        name: null,
+        Phonenumber: null,
+
+
+
         cart: [],
 
-        options: [
-            { label: 'Default', value: 'none' },
-            { label: 'Most Rated', value: 'rating' },
-            { label: 'least Rated', value: 'leastrated' },
-            { label: 'price(high to low)', value: 'price(high to low)' },
-            { label: 'price(low to high)', value: 'price(low to high)' },
 
 
-        ],
-        errors: [],
-        name: null,
-        age: null,
-        movie: null
+
+
 
     },
     methods: {
@@ -54,13 +28,19 @@ var app = new Vue({
                 this.cart.push(id);
             }
         },
+        isdisable(cet) {
+            return this.lesson[cet].space === 0;
+
+        },
+
 
         showcheckout() {
             this.showproduct = this.showproduct ? false : true;
         },
-        canaddtocart(aProduct) {
+        canaddtocart(alesson) {
+            console.log("iuhiyheiuh   " + this.lesson[alesson].space + "yuguyguy  " + alesson);
 
-            return aProduct.space > this.cartCount(aProduct.id);
+            return this.lesson[alesson].space > 4;
         },
         cartCount(id) {
             let count = 0;
@@ -76,19 +56,20 @@ var app = new Vue({
         submitForm() {
             alert('Submitted');
         },
-        checkForm: function (e) {
-            if (this.firstName && this.lastName && this.address && this.city && this.postcode) return true;
-            this.errors = [];
-            if (!this.firstName) this.errors.push("First Name required.");
-            if (!this.lastName) this.errors.push("Last Name required.");
-            if (!this.address) this.errors.push("Address required.");
-            if (!this.city) this.errors.push("City required.");
-            if (!this.postcode) this.errors.push("Postcode required.");
+        submitform() {
 
-            e.preventDefault();
+            if (this.formisvalid) {
+                console.log("sucess")
+
+            }
+            else {
+                console.log("failed")
+
+            }
+
         },
         removeButton(index) {
-            // this.lesson[index].space++;
+            this.lesson[index].space++;
             for (let i = 0; i < this.cart.length; i++) {
                 if (this.cart[i] == index) {
                     this.cart.splice(i, 1);
@@ -96,7 +77,9 @@ var app = new Vue({
 
                 }
             }
-        }
+        },
+
+
 
 
 
@@ -105,11 +88,21 @@ var app = new Vue({
 
     },
     computed: {
-        isDisabled() {
 
-        },
+
         cartItemCount() {
             return this.cart.length || '';
+        },
+        nameisvalid() {
+            return typeof this.name === 'text' && this.name.length < 3
+
+        },
+        Phonenumberisvalid() {
+            return typeof this.Phonenumber === 'number' && this.Phonenumber.length >= 10;
+        },
+        formisvalid: function () {
+            return this.nameisvalid && this.Phonenumberisvalid;
+
         },
 
         getlesson() {
@@ -130,7 +123,7 @@ var app = new Vue({
             // Sort by alphabetical order
             searchlesson = searchlesson.sort((a, b) => {
                 if (this.sortBy == 'alphabetically') {
-                    let fa = a.location.toLowerCase(), fb = b.location.toLowerCase()
+                    let fa = a.subject.toLowerCase(), fb = b.subject.toLowerCase()
 
                     if (fa < fb) {
                         return -1
@@ -140,9 +133,15 @@ var app = new Vue({
                     }
                     return 0
 
-                    // Sort by cooking time
+
                 } else if (this.sortBy == 'price') {
                     return a.price - b.price
+                }
+                else if (this.sortBy == 'location') {
+                    return a.location - b.location
+                }
+                else if (this.sortBy == 'space') {
+                    return a.space - b.space
                 }
             })
 
