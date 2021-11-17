@@ -8,7 +8,8 @@
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js"></script>
-
+    <script src="/vue.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 
 </head>
@@ -16,38 +17,45 @@
 <body>
 
     <div id="vueapp">
-        <h1>Lessons</h1>
+
 
         <div class="container">
-
+            <h1>Lessons</h1>
 
 
 
             <select name="sortBy" id="select" v-model="sortBy">
                 <option value="Location">Location</option>
                 <option value="price">price</option>
-            </select>
-            <button type="up" v-on:click="ascending = !ascending">Sort(a-z)/(z-a)
-                <i v-if="ascending" class="bi bi-sort-up"></i>
-                <i v-else class="bi bi-sort-down"></i>
-            </button>
+                <option value="subject">Subject</option>
+                <option value="space">Space</option>
+            </select> &nbsp &nbsp
+            <button type="up" v-on:click="ascending = !ascending">
+                <i v-if="ascending" class="fas fa-sort-amount-up-alt"></i>
+                <i v-else class="fas fa-sort-amount-down-alt"></i>
+            </button> &nbsp &nbsp
             <input type="text" v-model="searchValue" placeholder="Search Lesson" id="search-input"></input>
             <i class="fa fa-search"></i>
+            &nbsp &nbsp
 
 
 
 
 
-            <button type="button" v-on:click="showcheckout">
+
+            <button type="button" v-on:click="showcheckout" :disabled="!cartItemCount">
                 <span class="glyphicon glyphicon-shopping-cart">{{ cartItemCount }}</span> Checkout
             </button>
+            <br>
+            <br>
+            <br>
 
         </div>
 
 
 
         <div v-if="showproduct">
-            <div v-for="lesson in getlesson">
+            <div v-for="(lesson,count) in getlesson" :key="count">
                 <img v-bind:src="lesson.image" height="200" width="300">
                 <p>subject: {{ lesson.subject }}</p>
                 <!--Get data from object using v-text-->
@@ -60,13 +68,13 @@
 
 
 
-                <button class="btn btn-success" v-on:click="additem(lesson.id)" v-if="canaddtocart(lesson)">Add
+                <button class="btn btn-success" v-on:click="additem(count)" :disabled="isdisable(count)">Add
                     to cart</button>
-                <button disabled="true" v-else>Add to cart</button>
-                <span v-if="lesson.space === cartCount(lesson.id)">All Out!
+
+                <span v-if="lesson.space === 0">All Out!
                 </span>
-                <span v-else-if="lesson.space - cartCount(lesson.id) < 5">
-                    Only {{lesson.space - cartCount(lesson.id)}} left
+                <span v-else-if="lesson.space<5">
+                    Only {{lesson.space}} left
                 </span>
                 <span v-else>Buy Now!
                 </span>
@@ -88,7 +96,7 @@
             <h4>
                 <strong>Enter Your Information</strong>
             </h4>
-            <div v-if="cartCount(index)>0" v-for="(lesson,index) in getlesson" :key="index">
+            <div v-if=" cartCount(index)>0" v-for="(lesson,index) in getlesson" :key="index">
 
                 <img v-bind:src="lesson.image" height="200" width="300">
                 <p>subject: {{ lesson.subject }}</p>
@@ -97,17 +105,17 @@
                 <!--Get data from object-->
                 <p>Price: {{ lesson.price }}</p>
                 <!--Get data from object-->
-                <p>space: {{ lesson.space }}</p>
+                <p>space: {{ cartCount(index) }}</p>
                 <!--Get data from object-->
 
 
 
-                <button v-on:click="removeButton(lesson.id)">Remove </button>
+                <button v-on:click="removeButton(index)">Remove </button>
 
-                <span v-if="lesson.space === cartCount(lesson.id)">All Out!
+                <span v-if="lesson.space === 0">All Out!
                 </span>
-                <span v-else-if="lesson.space - cartCount(lesson.id) < 5">
-                    Only {{lesson.space - cartCount(lesson.id)}} left
+                <span v-else-if="lesson.space < 5">
+                    Only {{lesson.space}} left
                 </span>
                 <span v-else>Buy Now!
                 </span>
@@ -123,81 +131,14 @@
 
 
 
-            <form id="app" @submit="checkForm" action="/something" method="post">
-                <p v-if="errors.length">
-                    <b>Please correct the following error(s):</b>
-                <ul>
-                    <li v-for="error in errors">{{ error }}</li>
-                </ul>
-                </p>
+            <form>
+                <label for="Name">Name:</label>
+                <input v-model="name" id="name"><br><br>
+                <label for="Phonenumber">Phonenumber:</label>
+                <input v-model="Phonenumber" id="Phonenumber"><br><br>
+                <button :disabled="formisvalid">submit</button>
 
-                <strong>First Name:</strong>
-                <input v-model.trim="order.firstName" class="form-control" id="firstname" />
-
-
-                <strong>Last Name:</strong>
-                <input v-model.trim="order.lastName" class="form-control" id="Lastname" />
-
-
-
-                <strong>Address:</strong>
-
-
-                <input v-model.trim="order.address" class="form-control" id="address" />
-
-
-                <strong>City:</strong>
-
-                <input v-model.trim="order.city" class="form-control" id="city" />
-
-
-                <strong>State:</strong>
-                <select v-model="order.Country" class="form-control">
-                    <option disabled value="">State</option>
-                    <option v-for="(Country, key) in Country" v-bind:value="Country">
-                        {{ key }}
-                    </option>
-                </select>
-
-                <strong>Zip / Postal Code:</strong>
-                <input v-model.number="order.zip" class="form-control" type="number" id="postcode" />
-
-
-                <input type="checkbox" id="gift" value="true" v-bind:true-value="order.sendGift"
-                    v-bind:false-value="order.dontSendGift" v-model="order.gift">
-                <label for="gift">Ship As Gift?</label>
-
-                <!-- end of form-group -->
-
-                <input type="radio" id="home" v-bind:value="order.home" v-model="order.method">
-                <label for="home">Home</label><br>
-                <input type="radio" id="business" v-bind:value="order.business" v-model="order.method">
-                <label for="business">Business</label><br>
-
-                <!-- end of form-group-->
-
-                <input id='terms' type='checkbox' v-model='terms' /> I accept terms & conditions!!!
-                </label>
-
-                <button type="submit" value="submit" :disabled='isDisabled'>Place
-                    Order</button>
             </form>
-
-            <!-- end of form-group-->
-
-
-
-
-            <pre>
-                                        First Name: {{ order.firstName }}
-                                        Last Name: {{ order.lastName }}
-                                        Address: {{ order.address }}
-                                        City: {{ order.city }}
-                                        Zip: {{ order.zip }}
-                                        State: {{ order.state }}
-                                        Method: {{ order.method }}
-                                        Gift: {{ order.gift }}
-                                    </pre>
 
         </div>
     </div>
