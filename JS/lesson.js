@@ -6,7 +6,7 @@ let lesson = [
         location: "kent",
         price: 180,
         space: 8,
-        image: "../maths.jpg",
+        image: "../Web-based-app/Images/maths.jpg",
         rating: 3,
 
 
@@ -18,7 +18,7 @@ let lesson = [
         location: "eastham",
         price: 80,
         space: 7,
-        image: "../english.jpg",
+        image: "../Web-based-app/Images/english.jpg",
         rating: 4,
 
 
@@ -30,7 +30,7 @@ let lesson = [
         location: "liverpool",
         price: 100,
         space: 8,
-        image: "../music.png",
+        image: "../Web-based-app/Images/music.png",
         rating: 2,
 
 
@@ -41,7 +41,7 @@ let lesson = [
         location: "bath",
         price: 150,
         space: 10,
-        image: "../dance.jpg",
+        image: "../Web-based-app/Images/dance.jpg",
         rating: 4,
 
 
@@ -52,7 +52,7 @@ let lesson = [
         location: "west ham",
         price: 160,
         space: 12,
-        image: "../swim.png",
+        image: "../Web-based-app/Images/swim.png",
         rating: 3,
 
 
@@ -64,7 +64,7 @@ let lesson = [
         location: "london",
         price: 300,
         space: 12,
-        image: "../science.jpg",
+        image: "../Web-based-app/Images/science.jpg",
         rating: 5,
 
 
@@ -75,7 +75,7 @@ let lesson = [
         location: "canning town",
         price: 20,
         space: 12,
-        image: "../draw.jpg",
+        image: "../Web-based-app/Images/draw.jpg",
         rating: 1,
 
 
@@ -87,7 +87,7 @@ let lesson = [
         location: "aldgate",
         price: 100,
         space: 8,
-        image: "../act.jpg",
+        image: "../Web-based-app/Images/act.jpg",
         rating: 2,
 
 
@@ -98,7 +98,7 @@ let lesson = [
         location: "fulam",
         price: 400,
         space: 6,
-        image: "../hindi.jpg",
+        image: "../Web-based-app/Images/hindi.jpg",
         rating: 5,
 
     },
@@ -108,7 +108,7 @@ let lesson = [
         location: "uptonpark",
         price: 260,
         space: 7,
-        image: "../sing.jpg",
+        image: "../Web-based-app/Images/sing.jpg",
         rating: 4,
 
 
