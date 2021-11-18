@@ -5,11 +5,30 @@ var app = new Vue({
         showproduct: true,
         ascending: true,
         sortBy: 'location',
-
-
         searchValue: '',
         name: null,
         Phonenumber: null,
+        Country: {
+            UK: 'united kingdom',
+            IN: 'India',
+            US: 'United states of america',
+            CA: 'Canada',
+            AUS: 'Australia'
+        },
+        order: {
+            name: '',
+            phone: '',
+            address: '',
+            city: '',
+            postcode: '',
+            Country: '',
+            method: 'Home Address',
+            business: 'Business Address',
+            home: 'Home Address',
+            gift: 'Send As A Gift',
+            sendGift: 'Send As A Gift',
+            dontSendGift: 'Do Not Send As A Gift'
+        },
 
 
 
@@ -79,19 +98,20 @@ var app = new Vue({
 
         submitform() {
 
-            if (this.name.match(/[A-Za -z]/) && this.Phonenumber.match(/[0-9]/) && this.Phonenumber.length >= 10) {
-                console.log("sucess")
+            //var letters = /^[A-Za-z]+$/;
+
+            if (this.order.name.match(/[a-z]/) && this.order.phone.match(/[0-9]/) && this.order.phone.length >= 10)
+
+
                 return false;
 
-            }
+            else
 
 
-
-            else {
                 return true;
-
-            }
         },
+
+
 
         cartItemCount() {
             return this.cart.length || '';
@@ -146,6 +166,7 @@ var app = new Vue({
             return searchlesson
         }
     },
+
 
 
 
