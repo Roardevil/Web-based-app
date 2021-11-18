@@ -18,16 +18,7 @@ var app = new Vue({
         order: {
             name: '',
             phone: '',
-            address: '',
-            city: '',
-            postcode: '',
-            Country: '',
-            method: 'Home Address',
-            business: 'Business Address',
-            home: 'Home Address',
-            gift: 'Send As A Gift',
-            sendGift: 'Send As A Gift',
-            dontSendGift: 'Do Not Send As A Gift'
+
         },
 
 
@@ -49,10 +40,8 @@ var app = new Vue({
                 this.cart.push(id);
             }
         },
-        isdisable(cet) {
-            return this.lesson[cet].space === 0;
 
-        },
+
 
 
         showcheckout() {
@@ -110,6 +99,7 @@ var app = new Vue({
 
                 return true;
         },
+
 
 
 

@@ -8,10 +8,10 @@
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js"></script>
-    <script src="../Js/vue.js"></script>
+    <script src="../vue.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -44,7 +44,7 @@
 
 
 
-            <button type="button" v-on:click="showcheckout" :disabled="!cartItemCount">
+            <button type="button" v-on:click="showcheckout" :disabled="">
                 <span class="glyphicon glyphicon-shopping-cart">{{ cartItemCount }}</span> Checkout
             </button>
             <br>
@@ -148,9 +148,9 @@
     </div>
 </body>
 
-<script src="../Js/lesson.js"></script>
+<script src="../lesson.js"></script>
 
-<script src="../Js/index.js"></script>
+<script src="../index.js"></script>
 
 
 
