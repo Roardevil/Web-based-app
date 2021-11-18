@@ -111,7 +111,7 @@
 
 
 
-                <button v-on:click="removeButton(index)">Remove </button>
+                <button class="btn btn-success" v-on:click="removeButton(index)">Remove </button>
 
 
                 <span v-for='n in lesson.rating'>★
@@ -137,7 +137,8 @@
 
 
 
-            <button :disabled='submitform' @click="submit">Checkout</button>
+            <button v-model="order.message" class="btn btn-success" :disabled='submitform'
+                @click="submit">Checkout</button>
             </form>
 
 
@@ -148,9 +149,10 @@
     </div>
 </body>
 
-<script src="/index.js"></script>
+
 
 <script src="/lesson.js"></script>
+<script src="/index.js"></script>
 
 
 
