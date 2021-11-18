@@ -3,7 +3,7 @@ let lesson = [
     {
         id: 001,
         subject: "Maths",
-        location: "london",
+        location: "kent",
         price: 180,
         space: 8,
         image: "../images/maths.jpg",
@@ -15,7 +15,7 @@ let lesson = [
     {
         id: 002,
         subject: "English",
-        location: "bath",
+        location: "eastham",
         price: 80,
         space: 7,
         image: "../images/english.jpg",
@@ -27,7 +27,7 @@ let lesson = [
     {
         id: 003,
         subject: "Music",
-        location: "upton park",
+        location: "liverpool",
         price: 100,
         space: 8,
         image: "../images/music.png",
@@ -38,7 +38,7 @@ let lesson = [
     {
         id: 004,
         subject: "Dance",
-        location: "east ham",
+        location: "bath",
         price: 150,
         space: 10,
         image: "../images/dance.jpg",
@@ -61,7 +61,7 @@ let lesson = [
     {
         id: 006,
         subject: "Science",
-        location: "liverpool",
+        location: "london",
         price: 300,
         space: 12,
         image: "../images/science.jpg",
@@ -72,7 +72,7 @@ let lesson = [
     {
         id: 007,
         subject: "Drawing",
-        location: "kent",
+        location: "canning town",
         price: 20,
         space: 12,
         image: "../images/draw.jpg",
@@ -95,7 +95,7 @@ let lesson = [
     {
         id: 011,
         subject: "Hindi",
-        location: "canning town",
+        location: "fulam",
         price: 400,
         space: 6,
         image: "../images/hindi.jpg",
@@ -105,7 +105,7 @@ let lesson = [
     {
         id: 012,
         subject: "Singing",
-        location: "fulam",
+        location: "uptonpark",
         price: 260,
         space: 7,
         image: "../images/sing.jpg",

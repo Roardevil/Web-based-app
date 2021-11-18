@@ -4,7 +4,9 @@ var app = new Vue({
         lesson: lesson,
         showproduct: true,
         ascending: true,
-        sortBy: 'alphabetically',
+        sortBy: 'location',
+
+
         searchValue: '',
         name: null,
         Phonenumber: null,
@@ -53,21 +55,7 @@ var app = new Vue({
         },
 
 
-        submitForm() {
-            alert('Submitted');
-        },
-        submitform() {
 
-            if (this.formisvalid) {
-                console.log("sucess")
-
-            }
-            else {
-                console.log("failed")
-
-            }
-
-        },
         removeButton(index) {
             this.lesson[index].space++;
             for (let i = 0; i < this.cart.length; i++) {
@@ -89,21 +77,26 @@ var app = new Vue({
     },
     computed: {
 
+        submitform() {
+
+            if (this.name.match(/[A-Za -z]/) && this.Phonenumber.match(/[0-9]/) && this.Phonenumber.length >= 10) {
+                console.log("sucess")
+                return false;
+
+            }
+
+
+
+            else {
+                return true;
+
+            }
+        },
 
         cartItemCount() {
             return this.cart.length || '';
         },
-        nameisvalid() {
-            return typeof this.name === 'text' && this.name.length < 3
 
-        },
-        Phonenumberisvalid() {
-            return typeof this.Phonenumber === 'number' && this.Phonenumber.length >= 10;
-        },
-        formisvalid: function () {
-            return this.nameisvalid && this.Phonenumberisvalid;
-
-        },
 
         getlesson() {
 
@@ -113,8 +106,8 @@ var app = new Vue({
             if (this.searchValue != '' && this.searchValue) {
                 searchlesson = searchlesson.filter((lesson) => {
                     return lesson.subject
-                        .toUpperCase()
-                        .includes(this.searchValue.toUpperCase())
+                        .toLowerCase()
+                        .includes(this.searchValue.toLowerCase())
                 })
             }
 
@@ -122,8 +115,8 @@ var app = new Vue({
 
             // Sort by alphabetical order
             searchlesson = searchlesson.sort((a, b) => {
-                if (this.sortBy == 'alphabetically') {
-                    let fa = a.subject.toLowerCase(), fb = b.subject.toLowerCase()
+                if (this.sortBy == 'location') {
+                    let fa = a.location.toLowerCase(), fb = b.location.toLowerCase()
 
                     if (fa < fb) {
                         return -1
@@ -137,13 +130,13 @@ var app = new Vue({
                 } else if (this.sortBy == 'price') {
                     return a.price - b.price
                 }
-                else if (this.sortBy == 'location') {
-                    return a.location - b.location
-                }
+
+
                 else if (this.sortBy == 'space') {
                     return a.space - b.space
                 }
             })
+
 
             // Show sorted array in descending or ascending order
             if (!this.ascending) {
@@ -152,6 +145,8 @@ var app = new Vue({
 
             return searchlesson
         }
-    }
+    },
+
+
 
 })
