@@ -137,8 +137,8 @@
 
 
 
-            <button v-model="order.message" class="btn btn-success" :disabled='submitform'
-                @click="submit">Checkout</button>
+            <button class="btn btn-success" :disabled='submitform' @click="submit">Checkout</button>
+            <h2 v-if="sucess">{{sucess}}</h2>
             </form>
 
 

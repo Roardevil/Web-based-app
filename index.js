@@ -6,28 +6,13 @@ var app = new Vue({
         ascending: true,
         sortBy: 'location',
         searchValue: '',
-        name: null,
-        Phonenumber: null,
-        Country: {
-            UK: 'united kingdom',
-            IN: 'India',
-            US: 'United states of america',
-            CA: 'Canada',
-            AUS: 'Australia'
-        },
+        sucess: '',
+
         order: {
             name: '',
             phone: '',
-            address: '',
-            city: '',
-            postcode: '',
-            Country: '',
-            method: 'Home Address',
-            business: 'Business Address',
-            home: 'Home Address',
-            gift: 'Send As A Gift',
-            sendGift: 'Send As A Gift',
-            dontSendGift: 'Do Not Send As A Gift'
+
+
         },
 
 
@@ -58,11 +43,7 @@ var app = new Vue({
         showcheckout() {
             this.showproduct = this.showproduct ? false : true;
         },
-        canaddtocart(alesson) {
-            console.log("iuhiyheiuh   " + this.lesson[alesson].space + "yuguyguy  " + alesson);
 
-            return this.lesson[alesson].space > 4;
-        },
         cartCount(id) {
             let count = 0;
             for (var i = 0; i < this.cart.length; i++) {
@@ -73,7 +54,7 @@ var app = new Vue({
             return count;
         },
         submit() {
-            alert('Submitted');
+            this.sucess = "sucessful"
         },
 
 
@@ -88,6 +69,9 @@ var app = new Vue({
                 }
             }
         },
+        show() {
+            this.sucess = 'order placed sucessfully';
+        }
 
 
 
