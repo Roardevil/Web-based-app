@@ -72,6 +72,9 @@ var app = new Vue({
             }
             return count;
         },
+        submit() {
+            alert('Submitted');
+        },
 
 
 

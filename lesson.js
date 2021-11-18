@@ -6,7 +6,7 @@ let lesson = [
         location: "kent",
         price: 180,
         space: 8,
-        image: "../Web-based-app/Images/maths.jpg",
+        image: "/maths.jpg",
         rating: 3,
 
 
@@ -18,7 +18,7 @@ let lesson = [
         location: "eastham",
         price: 80,
         space: 7,
-        image: "../Web-based-app/Images/english.jpg",
+        image: "/english.jpg",
         rating: 4,
 
 
@@ -30,7 +30,7 @@ let lesson = [
         location: "liverpool",
         price: 100,
         space: 8,
-        image: "../Web-based-app/Images/music.png",
+        image: "/music.png",
         rating: 2,
 
 
@@ -41,7 +41,7 @@ let lesson = [
         location: "bath",
         price: 150,
         space: 10,
-        image: "../Web-based-app/Images/dance.jpg",
+        image: "/dance.jpg",
         rating: 4,
 
 
@@ -52,7 +52,7 @@ let lesson = [
         location: "west ham",
         price: 160,
         space: 12,
-        image: "../Web-based-app/Images/swim.png",
+        image: "/swim.png",
         rating: 3,
 
 
@@ -64,7 +64,7 @@ let lesson = [
         location: "london",
         price: 300,
         space: 12,
-        image: "../Web-based-app/Images/science.jpg",
+        image: "/science.jpg",
         rating: 5,
 
 
@@ -75,7 +75,7 @@ let lesson = [
         location: "canning town",
         price: 20,
         space: 12,
-        image: "../Web-based-app/Images/draw.jpg",
+        image: "/draw.jpg",
         rating: 1,
 
 
@@ -87,7 +87,7 @@ let lesson = [
         location: "aldgate",
         price: 100,
         space: 8,
-        image: "../Web-based-app/Images/act.jpg",
+        image: "/act.jpg",
         rating: 2,
 
 
@@ -98,7 +98,7 @@ let lesson = [
         location: "fulam",
         price: 400,
         space: 6,
-        image: "../Web-based-app/Images/hindi.jpg",
+        image: "/hindi.jpg",
         rating: 5,
 
     },
@@ -108,7 +108,7 @@ let lesson = [
         location: "uptonpark",
         price: 260,
         space: 7,
-        image: "../Web-based-app/Images/sing.jpg",
+        image: "/sing.jpg",
         rating: 4,
 
 
