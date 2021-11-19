@@ -54,8 +54,9 @@ var app = new Vue({
             return count;
         },
         submit() {
-            this.sucess = "order placed"
+            this.sucess = "order placed";
         },
+
 
 
 

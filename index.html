@@ -93,10 +93,10 @@
         </div>
 
         <div v-else>
-            <h1>School club checkout</h1>
-            <h4>
-                <strong>Enter Your Information</strong>
-            </h4>
+
+
+            <h1><b> <strong>Items in cart</strong></h1></b>
+
             <div v-if=" cartCount(index)>0" v-for="(lesson,index) in getlesson" :key="index">
 
                 <img v-bind:src="lesson.image" height="200" width="300">
@@ -126,7 +126,7 @@
 
 
 
-            <h1>Checkout</h1>
+            <h1>Fill in your details:</h1>
 
             <strong>First Name:</strong>
             <input v-model="order.name">
